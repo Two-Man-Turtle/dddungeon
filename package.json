@@ -1,0 +1,23 @@
+{
+  "name": "dddungeon",
+  "version": "1.0.0",
+  "description": "Momentum Final Project",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Two-Man-Turtle/dddungeon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Two-Man-Turtle/dddungeon/issues"
+  },
+  "homepage": "https://github.com/Two-Man-Turtle/dddungeon#readme",
+  "dependencies": {
+    "parcel-bundler": "^1.12.5"
+  }
+}
