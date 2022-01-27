@@ -46,6 +46,7 @@ class Game extends Phaser.Scene{
         })
         // Chort Enemy
         chort = this.physics.add.sprite(200, 200, 'chort')
+        
         // Collision 
         this.physics.add.collider(knight, wallLayer)
 
