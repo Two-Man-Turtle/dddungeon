@@ -4,9 +4,11 @@
   "description": "Momentum Final Project",
   "main": "index.js",
   "scripts": {
+
     "start": "parcel src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "parcel build src/index.html --public-url ./"
+    
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,7 @@
   },
   "homepage": "https://github.com/Two-Man-Turtle/dddungeon#readme",
   "dependencies": {
-    "parcel-bundler": "^1.12.5"
+    "parcel-bundler": "^1.12.5",
+    "phaser": "^3.55.2"
   }
 }
