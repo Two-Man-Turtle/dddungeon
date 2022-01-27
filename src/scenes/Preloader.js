@@ -7,7 +7,7 @@ class Preloader extends Phaser.Scene {
 
     preload() {
         // Map
-        this.load.image('tiles', 'src/assets/dungeon_tiles.png.png')
+        this.load.image('tiles', 'dist/assets/dungeon_tiles.png')
         this.load.tilemapTiledJSON('dungeon', 'src/assets/dungeon-01.json')
 
         // Player
