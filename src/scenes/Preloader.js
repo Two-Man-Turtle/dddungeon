@@ -7,20 +7,20 @@ class Preloader extends Phaser.Scene {
 
     preload() {
         // Map
-        this.load.image('tiles', 'dist/assets/dungeon_tiles.png')
-        this.load.tilemapTiledJSON('dungeon', 'src/assets/dungeon-01.json')
+        this.load.image('tiles', 'assets/dungeon_tiles.png')
+        this.load.tilemapTiledJSON('dungeon', '/assets/dungeon-01.json')
 
         // Player
-        this.load.atlas('knight', 'src/assets/knight.png', 'src/assets/knight.json')
+        this.load.atlas('knight', 'assets/knight.png', 'assets/knight.json')
 
         // Chort
-        this.load.atlas('chort', 'src/assets/chort.png', 'src/assets/chort.json')
+        this.load.atlas('chort', 'assets/chort.png', 'assets/chort.json')
 
         // TitleScreen
-        this.load.image('logo', 'src/assets/logo.png')
-        this.load.image('title_bg', 'src/assets/titlescreen.png')
-        this.load.image('playButton', 'src/assets/play_button.png')
-        this.load.audio('titleMusic', 'src/assets/title-screen-music.mp3')
+        this.load.image('logo', 'assets/logo.png')
+        this.load.image('title_bg', 'assets/titlescreen.png')
+        this.load.image('playButton', 'assets/play_button.png')
+        this.load.audio('titleMusic', 'assets/title-screen-music.mp3')
 
         // Loading Bar
         let loadingBar = this.add.graphics({
