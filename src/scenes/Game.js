@@ -1,5 +1,4 @@
 import Phaser, { Display } from 'phaser'
-import Entity from '../entities/Entity.js'
 import Enemy from '../entities/Enemy.js'
 
 let cursors;
@@ -73,7 +72,7 @@ class Game extends Phaser.Scene{
         // this.add.sprite(150, 200, 'chort').anims.play('chort-idle').setTint(0x9999ff)
         // this.add.sprite(150, 225, 'chort').anims.play('chort-movement')
         ///////
-        //this.enemy = new Enemy(this, 150, 225, 'chort')
+        this.enemy = new Enemy(this, 150, 225, 'chort')
 
 
         // Collision 

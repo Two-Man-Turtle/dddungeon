@@ -1,8 +1,5 @@
 import Phaser from "phaser"
 
-import Entity from "../entities/Entity.js"
-import Enemy from "../entities/Enemy.js"
-
 import chortImage from "../assets/chort.png"
 import chortJSON from "../assets/chort.json"
 import dungeonTileImage from "../assets/dungeon_tiles.png"
