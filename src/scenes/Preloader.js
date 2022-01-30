@@ -51,6 +51,7 @@ class Preloader extends Phaser.Scene {
     })
 
     this.enemy
+    this.player
   }
 
   create() {
