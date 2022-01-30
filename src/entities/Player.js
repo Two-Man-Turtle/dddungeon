@@ -67,9 +67,12 @@ export default class Player extends Entity {
 
         this.body.velocity.normalize().scale(speed)
         //animation
-        if (keys.up.isDown || keys.w.isDown || keys.down.isDown || keys.s.isDown ||
-            keys.left.isDown || keys.a.isDown || keys.right.isDown || keys.d.isDown) {
+        if (keys.right.isDown || keys.d.isDown) {
             this.anims.play('knight-movement-right', true)
+            this.scaleX = 1
+        } else if (keys.left.isDown || keys.a.isDown) {
+            this.anims.play('knight-movement-left', true)
+            this.scaleX = -1
         } else {
             this.anims.play('knight-idle', true)
         }

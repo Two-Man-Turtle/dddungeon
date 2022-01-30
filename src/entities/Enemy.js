@@ -46,6 +46,7 @@ export default class Enemy extends Entity {
                 //left
                 this.body.setVelocity(-this.speed, 0)
                 this.anims.play('enemy-movement')
+                this.scaleX = -1
                 break
             case 2:
                 //down
@@ -56,9 +57,9 @@ export default class Enemy extends Entity {
                 //right
                 this.body.setVelocity(this.speed, 0)
                 this.anims.play('enemy-movement')
+                this.scaleX = 1
                 break
         }
-        console.log(this.body.blocked)
     }//end constructor
 
     update(){
@@ -82,6 +83,7 @@ export default class Enemy extends Entity {
                     //left
                     this.body.setVelocity(-this.speed, 0)
                     this.anims.play('enemy-movement')
+                    this.scaleX = -1
                     break
                 case 'down':
                     //down
@@ -92,6 +94,7 @@ export default class Enemy extends Entity {
                     //right
                     this.body.setVelocity(this.speed, 0)
                     this.anims.play('enemy-movement')
+                    this.scaleX = 1
                     break
             }
         }

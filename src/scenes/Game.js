@@ -3,23 +3,6 @@ import Phaser, { Display } from 'phaser'
 import Player from '../entities/Player.js'
 import Enemy from '../entities/Enemy.js'
 
-let cursors;
-let knight;
-let chort;
-
-//let hit = 0
-// function handlePlayerChortCollision(obj1, obj2)
-// {   
-//     const chort = obj1
-//     const dx = knight.x - chort.x
-//     const dy = knight.y - chort.y
-
-//     const dir = new Phaser.Math.Vector2(dx, dy).normalize().scale(200)
-
-//     knight.setVelocity(dir.x, dir.y)
-//     this.hit = 1
-    
-//}
 
 class Game extends Phaser.Scene{
     constructor() {
@@ -53,29 +36,61 @@ class Game extends Phaser.Scene{
         this.player = new Player(this, 100, 100, 'knight')
         this.cameras.main.startFollow(this.player, true, 0.5, 0.5)
         this.physics.add.collider(this.player, wallLayer)
+        this.player.body.setCollideWorldBounds(true)
+
 
         // Chort Single Enemy
         this.enemy = new Enemy(this, 150, 225, 'chort')
         this.physics.add.collider(this.enemy, wallLayer)
+        this.enemy.body.setCollideWorldBounds(true)
+
+
+        // The Horde!
+        this.enemyHorde = this.add.group()
+        for (let i = 0; i < 8; i++) {
+            const e = new Enemy(this, 220 + 20*i, 250, 'chort')
+            e.body.setCollideWorldBounds(true)
+            e.setTint(0x9999ff)
+            this.enemyHorde.add(e)
+        }
+        this.physics.add.collider(this.enemyHorde, wallLayer)
 
 
         // Collision 
-        //this.physics.add.collider(chort, knight, handlePlayerChortCollision, undefined, this)
+        this.physics.add.overlap(this.player, this.enemy, this.handlePlayerEnemyCollision, null, this)
+        this.physics.add.overlap(this.player, this.enemyHorde, this.handlePlayerEnemyCollision, null, this)
         
-        // Old Camera stuff
-        //this.physics.world.setBounds(0, 0)
-        // camera.startFollow(knight, true, 0.5, 0.5);
-        // knight.fixedToCamera = true;
-        // camera.setBounds(0, 0);
-        // camera.setDeadzone(5, 5)
-        // camera.setZoom(2)
     }
     
+    handlePlayerEnemyCollision(player, enemy) {
+        //console.log('player hit')
+        this.cameras.main.shake(40, 0.02)
+        player.setTint(0xff0000)
+        this.time.addEvent({
+            delay: 400, //millisceonds
+            callback: ()=>{
+                player.clearTint()
+            },
+            callbackScope: this,
+            loop: false
+        })
+        enemy.explode()
+    }
+
+
+
     update() {
         //PLAYER UPDATE
         this.player.update()
         //ENEMY UPDATE
-        this.enemy.update()
+        if(!this.enemy.isDead){
+            this.enemy.update()
+        }
+        this.enemyHorde.children.iterate((child) => {
+            if(!child.isDead){
+                child.update()
+            }
+        })
     }
 }
 export default Game
