@@ -59,7 +59,37 @@ class Game extends Phaser.Scene{
             frames: this.anims.generateFrameNames('knight', {start: 0, end: 3, prefix: 'knight_m_run_anim_f', suffix: '.png'})
         })
         // Chort Enemy
+<<<<<<< Updated upstream
         chort = this.physics.add.sprite(200, 200, 'chort')
+=======
+        // let chort = this.physics.add.sprite(200, 200, 'chort')
+        // this.anims.create({
+        //     key: 'chort-idle',
+        //     repeat: -1,
+        //     frameRate: 10,
+        //     frames: this.anims.generateFrameNames('chort', {
+        //         start: 0,
+        //         end: 3,
+        //         prefix: 'chort/chort_idle_anim_f',
+        //         suffix: '.png'
+        //     })
+        // })
+        // this.anims.create({
+        //     key: 'chort-movement',
+        //     repeat: -1,
+        //     frameRate: 10,
+        //     frames: this.anims.generateFrameNames('chort', {
+        //         start: 0,
+        //         end: 3,
+        //         prefix: 'chort/chort_run_anim_f',
+        //         suffix: '.png'
+        //     })
+        // })
+        // this.add.sprite(150, 200, 'chort').anims.play('chort-idle').setTint(0x9999ff)
+        // this.add.sprite(150, 225, 'chort').anims.play('chort-movement')
+        ///////
+        chort = new Enemy(this, 150, 225, 'chort')
+>>>>>>> Stashed changes
 
         // Idle Animation
         this.anims.create({
