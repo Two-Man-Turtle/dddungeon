@@ -1,4 +1,5 @@
 import Phaser from "phaser"
+
 import chortImage from "../assets/chort.png"
 import chortJSON from "../assets/chort.json"
 import dungeonTileImage from "../assets/dungeon_tiles.png"
@@ -48,6 +49,8 @@ class Preloader extends Phaser.Scene {
       )
       console.log(percent)
     })
+
+    this.enemy
   }
 
   create() {

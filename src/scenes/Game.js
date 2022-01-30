@@ -1,4 +1,5 @@
 import Phaser, { Display } from 'phaser'
+import Enemy from '../entities/Enemy.js'
 
 let cursors;
 let knight;
@@ -42,7 +43,7 @@ class Game extends Phaser.Scene{
         // Player Character
         knight = this.physics.add.sprite(100, 100, "knight", 'knight_m_idle_anim_f0.png')
         cursors = this.input.keyboard.createCursorKeys()
-       
+        
         // Idle Animation
         this.anims.create({
             key: 'knight-idle',
@@ -59,25 +60,35 @@ class Game extends Phaser.Scene{
             frames: this.anims.generateFrameNames('knight', {start: 0, end: 3, prefix: 'knight_m_run_anim_f', suffix: '.png'})
         })
         // Chort Enemy
-        chort = this.physics.add.sprite(200, 200, 'chort')
+        // let chort = this.physics.add.sprite(200, 200, 'chort')
+        // this.anims.create({
+        //     key: 'chort-idle',
+        //     repeat: -1,
+        //     frameRate: 10,
+        //     frames: this.anims.generateFrameNames('chort', {
+        //         start: 0,
+        //         end: 3,
+        //         prefix: 'chort/chort_idle_anim_f',
+        //         suffix: '.png'
+        //     })
+        // })
+        // this.anims.create({
+        //     key: 'chort-movement',
+        //     repeat: -1,
+        //     frameRate: 10,
+        //     frames: this.anims.generateFrameNames('chort', {
+        //         start: 0,
+        //         end: 3,
+        //         prefix: 'chort/chort_run_anim_f',
+        //         suffix: '.png'
+        //     })
+        // })
+        // this.add.sprite(150, 200, 'chort').anims.play('chort-idle').setTint(0x9999ff)
+        // this.add.sprite(150, 225, 'chort').anims.play('chort-movement')
+        ///////
+        this.enemy = new Enemy(this, 150, 225, 'chort')
 
-        // Idle Animation
-        this.anims.create({
-            key: 'chort-idle',
-            repeat: -1,
-            frameRate: 10,
-            frames: this.anims.generateFrameNames('chort', {start: 0, end: 3, prefix: 'chort/chort_idle_anim_f', suffix: '.png' }), 
-        })
 
-        // Movement Animation
-        this.anims.create({
-            key: 'chort-movement',
-            repeat: -1,
-            frameRate: 10,
-            frames: this.anims.generateFrameNames('chort', {start: 0, end: 3, prefix: 'chort/chort_run_anim_f', suffix: '.png'})
-        })
-        chort.anims.play('chort-movement')
-        
         // Collision 
         this.physics.add.collider(knight, wallLayer)
         this.physics.add.collider(chort, knight, handlePlayerChortCollision, undefined, this)
