@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import Entity from '../entities/Entity.js'
+import Entity from './Entity.js'
 
 class Player extends Entity {
     constructor(scene, x, y, textureKey) {

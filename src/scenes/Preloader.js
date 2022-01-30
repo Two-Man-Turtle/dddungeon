@@ -12,6 +12,7 @@ import titleMusic from "../assets/Memoraphile - Spooky Dungeon.mp3"
 import titleScreenImg from "../assets/titlescreen.png"
 
 class Preloader extends Phaser.Scene {
+
   constructor() {
     super("preloader")
   }

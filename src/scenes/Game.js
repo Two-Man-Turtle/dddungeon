@@ -5,6 +5,20 @@ let cursors;
 let knight;
 let chort;
 
+let hit = 0
+function handlePlayerChortCollision(obj1, obj2)
+{   
+    const chort = obj1
+    const dx = knight.x - chort.x
+    const dy = knight.y - chort.y
+
+    const dir = new Phaser.Math.Vector2(dx, dy).normalize().scale(200)
+
+    knight.setVelocity(dir.x, dir.y)
+    this.hit = 1
+    
+}
+
 class Game extends Phaser.Scene{
     constructor() {
         super('game')
@@ -29,7 +43,7 @@ class Game extends Phaser.Scene{
         // Player Character
         knight = this.physics.add.sprite(100, 100, "knight", 'knight_m_idle_anim_f0.png')
         cursors = this.input.keyboard.createCursorKeys()
-       
+        
         // Idle Animation
         this.anims.create({
             key: 'knight-idle',
@@ -77,6 +91,8 @@ class Game extends Phaser.Scene{
 
         // Collision 
         this.physics.add.collider(knight, wallLayer)
+        this.physics.add.collider(chort, knight, handlePlayerChortCollision, undefined, this)
+        
 
         // Camera
         const camera = this.cameras.main;
@@ -87,11 +103,19 @@ class Game extends Phaser.Scene{
         camera.setBounds(0, 0);
         camera.setDeadzone(5, 5)
         camera.setZoom(2)
-        
     }
-
+    
     update() {
         const speed = 100
+        if (this.hit > 0)
+        {
+            ++this.hit
+            if (this.hit > 10)
+            {
+                this.hit = 0
+            }
+            return
+        }
         
         if (cursors.left.isDown) {
             knight.anims.play('knight-movement', true)
@@ -119,5 +143,4 @@ class Game extends Phaser.Scene{
         }
     }
 }
-
 export default Game
