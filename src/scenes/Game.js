@@ -34,14 +34,14 @@ class Game extends Phaser.Scene{
         const camera = this.cameras.main;
         camera.setZoom(2)
         // Player Character
-        this.player = new Player(this, 100, 100, 'knight')
+        this.player = new Player(this, 100, 100, 'knight', 100)
         this.cameras.main.startFollow(this.player, true, 0.5, 0.5)
         this.physics.add.collider(this.player, wallLayer)
         this.player.body.setCollideWorldBounds(true)
 
 
         // Chort Single Enemy
-        this.enemy = new Enemy(this, 150, 225, 'chort')
+        this.enemy = new Enemy(this, 150, 225, 'chort', 50)
         this.physics.add.collider(this.enemy, wallLayer)
         this.enemy.body.setCollideWorldBounds(true)
 
@@ -49,7 +49,7 @@ class Game extends Phaser.Scene{
         // The Horde!
         this.enemyHorde = this.add.group()
         for (let i = 0; i < 8; i++) {
-            const e = new Enemy(this, 220 + 20*i, 250, 'chort')
+            const e = new Enemy(this, 220 + 20*i, 250, 'chort', 15)
             e.body.setCollideWorldBounds(true)
             e.setTint(0x9999ff)
             this.enemyHorde.add(e)
@@ -67,7 +67,24 @@ class Game extends Phaser.Scene{
     }
     
     handlePlayerEnemyCollision(player, enemy) {
+        //Player Interactions
         //console.log('player hit')
+        player.health -= enemy.damage
+        this.healthbar.updateHealth(player.health)
+        //console.log(player.health)
+
+        //Player Death Handling
+        if(player.health <= 0) {
+            //we can load a death screen here maybe
+            this.cameras.main.shake(100, 0.05)
+            this.cameras.main.fade(250, 0, 0, 0)
+            this.cameras.main.once('camerafadeoutcomplete', () => {
+                this.scene.restart()
+            })
+        }
+
+
+        //Hit Animation
         this.cameras.main.shake(40, 0.02)
         player.setTint(0xff0000)
         this.time.addEvent({
@@ -78,6 +95,7 @@ class Game extends Phaser.Scene{
             callbackScope: this,
             loop: false
         })
+        //Enemy Expoldes on Hit
         enemy.explode()
     }
 
