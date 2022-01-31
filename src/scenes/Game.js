@@ -2,6 +2,7 @@ import Phaser, { Display } from 'phaser'
 
 import Player from '../entities/Player.js'
 import Enemy from '../entities/Enemy.js'
+import Healthbar from '../resources/Healthbar.js'
 
 
 class Game extends Phaser.Scene{
@@ -59,6 +60,9 @@ class Game extends Phaser.Scene{
         // Collision 
         this.physics.add.overlap(this.player, this.enemy, this.handlePlayerEnemyCollision, null, this)
         this.physics.add.overlap(this.player, this.enemyHorde, this.handlePlayerEnemyCollision, null, this)
+
+        // Healthbar
+        this.healthbar = new Healthbar(this, 20, 20, 100)
         
     }
     
