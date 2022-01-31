@@ -70,10 +70,10 @@ export default class Player extends Entity {
         //animation
         if (keys.right.isDown || keys.d.isDown) {
             this.anims.play('knight-movement-right', true)
-            this.scaleX = 1
+            this.flipX = false
         } else if (keys.left.isDown || keys.a.isDown) {
             this.anims.play('knight-movement-left', true)
-            this.scaleX = -1
+            this.flipX = true
         } else {
             this.anims.play('knight-idle', true)
         }
