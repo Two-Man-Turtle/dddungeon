@@ -49,7 +49,7 @@ class Game extends Phaser.Scene{
         // The Horde!
         this.enemyHorde = this.add.group()
         for (let i = 0; i < 8; i++) {
-            const e = new Enemy(this, 220 + 20*i, 250, 'chort', 15)
+            const e = new Enemy(this, 220 + 20*i, 225, 'chort', 15)
             e.body.setCollideWorldBounds(true)
             e.setTint(0x9999ff)
             this.enemyHorde.add(e)
