@@ -2,10 +2,11 @@ import Phaser from 'phaser'
 import Entity from './Entity.js'
 
 export default class Player extends Entity {
-    constructor(scene, x, y, textureKey) {
+    constructor(scene, x, y, textureKey, health) {
         super(scene, x, y, textureKey, 'Player')
 
         this.speed = 100
+        this.health = health
         // Player Animations
         const anims = scene.anims
 

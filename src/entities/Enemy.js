@@ -2,13 +2,14 @@ import Phaser from 'phaser'
 import Entity from './Entity.js'
 
 export default class Enemy extends Entity {
-    constructor(scene, x, y, textureKey){
+    constructor(scene, x, y, textureKey, damage){
         super(scene,x,y,textureKey,'Enenmy')
 
         const anims = scene.anims
         const animFrameRate = 10
         this.textureKey = textureKey
         this.speed = 35
+        this.damage = damage
 
         anims.create({
             key: 'enemy-idle',
